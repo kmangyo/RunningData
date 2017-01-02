@@ -1,6 +1,7 @@
-// This code is based on these articles. The data(nike_run.csv)is my personal data. So, I did not upload it.
-// http://bl.ocks.org/mbostock/4063318
-// https://www.crowdanalytix.com/communityBlog/10-steps-to-create-calendar-view-heatmap-in-d3-js 
+// This code is based on these articles[1,2]. The data(nike_run.csv)is my personal data. So, I did not upload it.
+// [1] http://bl.ocks.org/mbostock/4063318
+// [2] https://www.crowdanalytix.com/communityBlog/10-steps-to-create-calendar-view-heatmap-in-d3-js 
+// CSV file loading with local web server. ex) https://github.com/zziuni/d3/wiki
 
 <!DOCTYPE html>
 <meta charset="utf-8">
@@ -49,7 +50,7 @@ var percent = d3.format(".1%"),
     format = d3.time.format("%Y-%m-%d");
 
 var color = d3.scale.quantize()
-    .domain([0, 1])
+    .domain([0, 1]) //color range
     .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
 var svg = d3.select("body").selectAll("svg")
@@ -106,6 +107,7 @@ svg.selectAll(".month")
     .attr("class", "month")
     .attr("d", monthPath);
 
+  // Some codes should be changed based on csv file.
 d3.csv("nike_run.csv", function(error, csv) {
   if (error) throw error;
 
